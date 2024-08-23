@@ -1,0 +1,59 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5431/secured-docs
+    username: username
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+    show-sql: true
+  mail:
+    host: localhost
+    port: 1025
+    username: admin
+    password: admin
+    properties:
+      mail:
+        mime:
+          charset: UTF
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enable: true
+        connectiontimeout: 10000
+        timeout: 10000
+        writetimeout: 10000
+  sql:
+    init:
+      mode: never
+      continue-on-error: false
+      schema-locations: classpath:/data/schema.sql
+      data-locations: classpath:/data/data.sql
+
+server:
+  error:
+    path: /user/error
+    whitelabel:
+      enabled: false
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E32723538782F413F4428472B4B6250645367566B5970
+      expiration: 432_000_000_000
+  mailing:
+    front-end:
+      url: http://localhost:3000
+  file:
+    upload:
+      photos-output-dir: ./uploads
